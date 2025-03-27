@@ -1,20 +1,24 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using NhaSachOnline.Models;
+using NhaSachOnline.Repositories;
 
 namespace NhaSachOnline.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHomeRepository _homeRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHomeRepository homeRepository)
         {
             _logger = logger;
+            _homeRepository = homeRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string keySearch = "", int theLoaiId = 0)
         {
+            IEnumerable<Book> books = await _homeRepository.LayThongTinSachTuDatabase(keySearch, theLoaiId);
             return View();
         }
 
