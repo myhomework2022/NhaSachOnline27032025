@@ -4,13 +4,17 @@ using NhaSachOnline.Models;
 
 namespace NhaSachOnline.Repositories
 {
-    public class HomeRepository
+    public class HomeRepository : IHomeRepository
     {
 
         private readonly ApplicationDbContext _dbContext;
         public HomeRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
+        }
+        public async Task<IEnumerable<Genre>> Genres()
+        {
+            return await _dbContext.Genres.ToListAsync();
         }
         public async Task<IEnumerable<Book>> LayThongTinSachTuDatabase(string keySearch = "", int theLoaiId = 0)
         {
