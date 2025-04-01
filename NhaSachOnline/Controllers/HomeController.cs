@@ -16,9 +16,21 @@ namespace NhaSachOnline.Controllers
             _homeRepository = homeRepository;
         }
 
-        public async Task<IActionResult> Index(string keySearch = "", int theLoaiId = 0)
+        //public async Task<IActionResult> Index(string keySearch = "", int theLoaiId = 0)
+        //{
+        //    IEnumerable<Book> books = await _homeRepository.LayThongTinSachTuDatabase(keySearch, theLoaiId);
+        //    IEnumerable<Genre> genres = await _homeRepository.LayThongTinSachTuDatabase(keySearch, theLoaiId);
+        //    BookDislayModel bookDislayModel = new BookDislayModel
+        //    {
+        //        Book = books,
+        //        Genre = genres,
+        //        KeySearch = keySearch
+        //    };
+        //    return View();
+        //}
+
+        public IActionResult Index()
         {
-            IEnumerable<Book> books = await _homeRepository.LayThongTinSachTuDatabase(keySearch, theLoaiId);
             return View();
         }
 
