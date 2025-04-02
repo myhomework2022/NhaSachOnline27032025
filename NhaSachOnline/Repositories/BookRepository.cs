@@ -27,6 +27,6 @@ namespace NhaSachOnline.Repositories
             await _dbContext.SaveChangesAsync();
         }
         public async Task<Book?> GetBookById(int id) => await _dbContext.Books.FindAsync(id);
-        public async Task<IEnumerable<Book>> GetBooks() => await _dbContext.Books.ToListAsync();
+        public async Task<IEnumerable<Book>> GetBooks() => await _dbContext.Books.Include(g => g.Genre).ToListAsync();
     }
 }
